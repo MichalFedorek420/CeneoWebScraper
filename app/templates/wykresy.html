@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <title>Wykresy dotyczące produktu</title>
+</head>
+
+<body>
+  <div class="container mt-5">
+    <h1>Wykresy dotyczące produktu</h1>
+
+    <div class="row">
+      <div class="col-md-6">
+        <canvas id="rekomendacjeChart"></canvas>
+      </div>
+      <div class="col-md-6">
+        <canvas id="gwiazdkiChart"></canvas>
+      </div>
+    </div>
+
+    <div class="mt-3">
+      <a href="strona_produktu.html" class="btn btn-primary">Wróć do strony produktu</a>
+    </div>
+  </div>
+
+  <script>
+    // Dane do wykresu kołowego - udział rekomendacji
+    var rekomendacjeData = {
+      labels: ["Zalecam", "Nie zalecam"],
+      datasets: [{
+        data: [80, 20],
+        backgroundColor: ["#36a2eb", "#ff6384"]
+      }]
+    };
+
+    // Opcje wykresu kołowego
+    var rekomendacjeOptions = {
+      responsive: true
+    };
+
+    // Tworzenie wykresu kołowego
+    var rekomendacjeChart = new Chart(document.getElementById('rekomendacjeChart'), {
+      type: 'pie',
+      data: rekomendacjeData,
+      options: rekomendacjeOptions
+    });
+
+    // Dane do wykresu słupkowego - liczba opinii z gwiazdkami
+    var gwiazdkiData = {
+      labels: ["1 gwiazdka", "2 gwiazdki", "3 gwiazdki", "4 gwiazdki", "5 gwiazdek"],
+      datasets: [{
+        label: "Liczba opinii",
+        data: [5, 10, 20, 30, 35],
+        backgroundColor: ["#ff6384", "#ff9f40", "#ffcd56", "#4bc0c0", "#36a2eb"]
+      }]
+    };
+
+    // Opcje wykresu słupkowego
+    var gwiazdkiOptions = {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          stepSize: 10
+        }
+      }
+    };
+
+    // Tworzenie wykresu słupkowego
+    var gwiazdkiChart = new Chart(document.getElementById('gwiazdkiChart'), {
+      type: 'bar',
+      data: gwiazdkiData,
+      options: gwiazdkiOptions
+    });
+  </script>
+</body>
+
+</html>
